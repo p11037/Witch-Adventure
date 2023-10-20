@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://b67xs3ncqkw25"]
+
+[ext_resource type="Texture2D" uid="uid://br6rwso5jdo3x" path="res://Item/coin_1.png" id="1_wm03y"]
+[ext_resource type="Texture2D" uid="uid://0cpj81wxny88" path="res://Item/coin_2.png" id="2_lqsxa"]
+[ext_resource type="Texture2D" uid="uid://d4ba66xqqcs4s" path="res://Item/coin_3.png" id="3_85pm5"]
+[ext_resource type="Texture2D" uid="uid://behkg6ha0sjht" path="res://Item/coin_4.png" id="4_d6cel"]
+
+[sub_resource type="GDScript" id="GDScript_36e3h"]
+script/source = "extends Area2D
+
+func _on_body_entered(body):
+	if body.name == \"player\":
+		Game.Point += 5
+		queue_free()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cgmx8"]
+radius = 4.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3dnh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wm03y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lqsxa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_85pm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d6cel")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="coin" type="Area2D"]
+script = SubResource("GDScript_36e3h")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cgmx8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_n3dnh")
+autoplay = "default"
+frame_progress = 0.721875
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://cim6y45qnab3b"]
+
+[ext_resource type="Texture2D" uid="uid://d3fdrul7dg74n" path="res://Item/flasks_3_1.png" id="1_oxsul"]
+[ext_resource type="Texture2D" uid="uid://dptu35q4ydmst" path="res://Item/flasks_3_2.png" id="2_dddr8"]
+[ext_resource type="Texture2D" uid="uid://b73qiqpya880y" path="res://Item/flasks_3_3.png" id="3_m4pkh"]
+[ext_resource type="Texture2D" uid="uid://m1sjg5wrl8g3" path="res://Item/flasks_3_4.png" id="4_04vcd"]
+
+[sub_resource type="GDScript" id="GDScript_31gxs"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_body_entered(body):
+	if body.name == \"player\":
+		var character = body
+		if character.can_attack():
+			character.increment_attack_count()  # เรียกใช้ฟังก์ชัน increment_attack_count ใน CharacterBody2D
+			queue_free()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1eksq"]
+radius = 6.08276
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ijxo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oxsul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dddr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m4pkh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_04vcd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="power" type="Area2D"]
+scale = Vector2(2, 2)
+script = SubResource("GDScript_31gxs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1eksq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1ijxo")
+autoplay = "default"
+frame_progress = 0.0738907
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpa143m0bj8w"]
+
+[ext_resource type="Script" path="res://Collectable/posion.gd" id="1_efr2b"]
+[ext_resource type="Texture2D" uid="uid://l4i1eca3r42h" path="res://Item/flasks_1_1.png" id="1_q0v0y"]
+[ext_resource type="Texture2D" uid="uid://c81onkpjndbp0" path="res://Item/flasks_1_2.png" id="2_gi25d"]
+[ext_resource type="Texture2D" uid="uid://djrhp4huht8sm" path="res://Item/flasks_1_3.png" id="3_kfrny"]
+[ext_resource type="Texture2D" uid="uid://cegcrocagcpaa" path="res://Item/flasks_1_4.png" id="4_2p0xb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d3snn"]
+radius = 4.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6tpbf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q0v0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_gi25d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kfrny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2p0xb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
+
+[node name="posion" type="Area2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_efr2b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_d3snn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6tpbf")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.950321
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

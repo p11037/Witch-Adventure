@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6hfew81m5fw7"]
+
+[ext_resource type="Script" path="res://collisionEnd.gd" id="1_77xts"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yalx5"]
+size = Vector2(493, 20)
+
+[node name="collision" type="Area2D"]
+z_index = 1
+script = ExtResource("1_77xts")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yalx5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

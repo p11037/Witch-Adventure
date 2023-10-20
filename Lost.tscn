@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck01g8fucsx5c"]
+
+[ext_resource type="Script" path="res://Win.gd" id="1_n5gv8"]
+[ext_resource type="PackedScene" uid="uid://dqqowliyu5p6l" path="res://parallax_background.tscn" id="2_hqd8w"]
+[ext_resource type="FontFile" uid="uid://d2yx0dtnk8a24" path="res://PressStart2P-Regular.ttf" id="3_44xjv"]
+
+[node name="Lost" type="Node2D"]
+script = ExtResource("1_n5gv8")
+
+[node name="BG" parent="." instance=ExtResource("2_hqd8w")]
+
+[node name="Lost" type="Label" parent="."]
+offset_left = 282.0
+offset_top = 216.0
+offset_right = 782.0
+offset_bottom = 376.0
+theme_override_fonts/font = ExtResource("3_44xjv")
+theme_override_font_sizes/font_size = 50
+text = "YOU LOST !"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0uipm2c6pe7h"]
+
+[ext_resource type="Script" path="res://Win.gd" id="1_ghbql"]
+[ext_resource type="PackedScene" uid="uid://dqqowliyu5p6l" path="res://parallax_background.tscn" id="1_j17jl"]
+[ext_resource type="FontFile" uid="uid://d2yx0dtnk8a24" path="res://PressStart2P-Regular.ttf" id="2_leppb"]
+
+[node name="Win" type="Node2D"]
+script = ExtResource("1_ghbql")
+
+[node name="BG" parent="." instance=ExtResource("1_j17jl")]
+
+[node name="Win" type="Label" parent="."]
+offset_left = 301.0
+offset_top = 217.0
+offset_right = 751.0
+offset_bottom = 377.0
+theme_override_fonts/font = ExtResource("2_leppb")
+theme_override_font_sizes/font_size = 50
+text = "YOU WIN !"
+horizontal_alignment = 1
+vertical_alignment = 1
